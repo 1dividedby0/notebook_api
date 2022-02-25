@@ -64,18 +64,13 @@ def authenticate():
 @routes_blueprint.route("/api/v1/database/upload/", methods=["GET", "POST"])
 def upload():
     data = request.get_json(force=True)
-    # token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEY5Q0NGQjAzZTcwMGNjNDI5OTY3MjY5NTcxQ0JhQ0M2QUE1NmRmYWIiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NDUzMTExNTQzODUsIm5hbWUiOiJOb3RlYm9vayJ9.N2axGWFvDekcS7UToV4h1QFVxFaDqi-JaruviRPbtyk"
+    # token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDQ5NWQ0ODE1Q2JCMGMzOTY2M2JjMWVCRDRBNjY4OWRBOGRiN2EyRGQiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NDU1OTY0NjQ2MTUsIm5hbWUiOiJQYXNzcG9ydCJ9.MjvBRnKdvFsJ6McjrwhKgL8-bNMx17-_vY7NSS_hgfc"
     # file_path = "routes.py"
     token = data['token']
     file_path = data['file_path']
-    with open(file_path) as f:
-        x = requests.post(url="https://api.web3.storage/upload", data=f.read(), headers={"Authorization": "Bearer " + token})
-        cid = x.json()['cid']
-        response = jsonify({"success": True, "cid": cid})
-        response.headers.add("Access-Control-Allow-Origin", "*")
-        return response
-    response = jsonify({"success": True, "cid": None})
+    cid = None
+    x = requests.post(url="https://api.web3.storage/upload", data=f.read(), headers={"Authorization": "Bearer " + token})
+    cid = x.json()['cid']
+    response = jsonify({"success": True, "cid": cid})
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
-    
-    # return render_template('entry_upload.html', token=token, file_paths=file_paths)
