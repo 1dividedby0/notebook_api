@@ -51,7 +51,7 @@ export default function AuthForm() {
         const wallet_address = window.ethereum.selectedAddress;
         let call_params = { from: wallet_address, gasPrice: 20000000000, gas: 4000000 };
         var contractToken = new web3.eth.Contract(ABI_TOKEN_CONTRACT, TOKEN_MANAGER_CONTRACT, call_params);
-        contractToken.methods.approve(wallet_address.toString(), 1000000000000).send().then(function (receipt) {
+        contractToken.methods.approve(NFT_ADDRESS, 1000000000000).send().then(function (receipt) {
             buyNFT();
         });
     }
