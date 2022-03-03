@@ -11,7 +11,7 @@ function App() {
   const [notebook, setNotebook] = useState();
   return (
     <div className="App">
-      <NotebookContext.Provider value={notebook, setNotebook}>
+      <NotebookContext.Provider value={[notebook, setNotebook]}>
         <LoginForm />
       </NotebookContext.Provider>
     </div>

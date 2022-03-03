@@ -1,10 +1,10 @@
 export const BACKEND_REQUEST_HOST = "http://127.0.0.1:5000"
-export const SHARD_A_ADDRESS = '0xd9145CCE52D386f254917e481eB44e9943F39138'
-export const SHARD_B_ADDRESS = '0xd8b934580fcE35a11B58C6D73aDeE468a2833fa8'
-export const SHARD_C_ADDRESS = '0xf8e81D47203A594245E36C48e151709F0C19fBe8'
-export const AUTH_MANAGER_CONTRACT = '0xD7ACd2a9FD159E69Bb102A1ca21C9a3e3A5F771B'
-export const TOKEN_MANAGER_CONTRACT = '0x7EF2e0048f5bAeDe046f6BF797943daF4ED8CB47'
-export const NFT_ADDRESS = '0xDA0bab807633f07f013f94DD0E6A4F96F8742B53'
+export const SHARD_A_ADDRESS = '0x6d963B871890F3f913Deb599ACfD285FD1cd1b8d'
+export const SHARD_B_ADDRESS = '0x26Ca5E0bf6C597B08dB2456ddc89367873B84e0F'
+export const SHARD_C_ADDRESS = '0x8a89f276321f09cFB809C1eF317bAF7BaA19352d'
+export const AUTH_MANAGER_CONTRACT = '0x99Ac9AEc64711B5c5b1250a18181dB6F492Dc50e'
+export const TOKEN_MANAGER_CONTRACT = '0xaCAd78950E3F6985252d6C26476DF0e9eba03BDc'
+export const NFT_ADDRESS = '0x1b10C74150e2B86d619b5B1215BC230a4C9A581c'
 export const ABI_AUTHENTICATE = [
     {
         "inputs": [
@@ -539,7 +539,7 @@ export const ABI_NFT_CONTRACT = [
         "outputs": [
             {
                 "internalType": "string",
-                "name": "",
+                "name": "rootCID",
                 "type": "string"
             }
         ],
