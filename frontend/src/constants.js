@@ -1,10 +1,10 @@
 export const BACKEND_REQUEST_HOST = "http://127.0.0.1:5000"
-export const SHARD_A_ADDRESS = '0x6d963B871890F3f913Deb599ACfD285FD1cd1b8d'
-export const SHARD_B_ADDRESS = '0x26Ca5E0bf6C597B08dB2456ddc89367873B84e0F'
-export const SHARD_C_ADDRESS = '0x8a89f276321f09cFB809C1eF317bAF7BaA19352d'
-export const AUTH_MANAGER_CONTRACT = '0x99Ac9AEc64711B5c5b1250a18181dB6F492Dc50e'
-export const TOKEN_MANAGER_CONTRACT = '0xaCAd78950E3F6985252d6C26476DF0e9eba03BDc'
-export const NFT_ADDRESS = '0x293EeCe25e4FA819869d8dd339b75368FCC14F74'
+export const SHARD_A_ADDRESS = '0x4F16fB890F0EAD1b33555161BE6D8e815b9Dc441'
+export const SHARD_B_ADDRESS = '0x4058fcbC446D2aC1A6d3C0B9f2c1Bfb2Efb9072A'
+export const SHARD_C_ADDRESS = '0x5a104C9C8ccF5EC1698D112bD03ceB282A9A80A5'
+export const AUTH_MANAGER_CONTRACT = '0x6dA8F773197A35fA2E2E06EAd1159DAa204cbDc2'
+export const TOKEN_MANAGER_CONTRACT = '0x645bEca852e253229241b1d5CB51A9CE2681a44d'
+export const NFT_ADDRESS = '0x33C4986505A7D069Fec3EDF1d39364162490fc62'
 export const ABI_AUTHENTICATE = [
     {
         "inputs": [
@@ -411,9 +411,9 @@ export const ABI_NFT_CONTRACT = [
     {
         "inputs": [
             {
-                "internalType": "uint256",
+                "internalType": "string",
                 "name": "_tokenId",
-                "type": "uint256"
+                "type": "string"
             },
             {
                 "internalType": "string",
@@ -640,9 +640,9 @@ export const ABI_NFT_CONTRACT = [
     {
         "inputs": [
             {
-                "internalType": "uint256",
+                "internalType": "string",
                 "name": "_tokenId",
-                "type": "uint256"
+                "type": "string"
             }
         ],
         "name": "pullRootCID",
@@ -691,9 +691,9 @@ export const ABI_NFT_CONTRACT = [
     {
         "inputs": [
             {
-                "internalType": "uint256",
+                "internalType": "string",
                 "name": "",
-                "type": "uint256"
+                "type": "string"
             }
         ],
         "name": "tokenIDtoCID",

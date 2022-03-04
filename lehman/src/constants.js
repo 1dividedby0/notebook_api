@@ -1,5 +1,5 @@
 export const STORAGE_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDQ5NWQ0ODE1Q2JCMGMzOTY2M2JjMWVCRDRBNjY4OWRBOGRiN2EyRGQiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NDU1OTY0NjQ2MTUsIm5hbWUiOiJQYXNzcG9ydCJ9.MjvBRnKdvFsJ6McjrwhKgL8-bNMx17-_vY7NSS_hgfc";
-export const NFT_CONTRACT = "0x293EeCe25e4FA819869d8dd339b75368FCC14F74"
+export const NFT_CONTRACT = "0x33C4986505A7D069Fec3EDF1d39364162490fc62"
 export const ETHERSCAN_APIKEY = "VDTPMN4FSSHITU5PG7JAZJEAIME41SWV79";
 
 export const ABI_NFT_CONTRACT = [
@@ -107,9 +107,9 @@ export const ABI_NFT_CONTRACT = [
     {
         "inputs": [
             {
-                "internalType": "uint256",
+                "internalType": "string",
                 "name": "_tokenId",
-                "type": "uint256"
+                "type": "string"
             },
             {
                 "internalType": "string",
@@ -336,9 +336,9 @@ export const ABI_NFT_CONTRACT = [
     {
         "inputs": [
             {
-                "internalType": "uint256",
+                "internalType": "string",
                 "name": "_tokenId",
-                "type": "uint256"
+                "type": "string"
             }
         ],
         "name": "pullRootCID",
@@ -387,9 +387,9 @@ export const ABI_NFT_CONTRACT = [
     {
         "inputs": [
             {
-                "internalType": "uint256",
+                "internalType": "string",
                 "name": "",
-                "type": "uint256"
+                "type": "string"
             }
         ],
         "name": "tokenIDtoCID",

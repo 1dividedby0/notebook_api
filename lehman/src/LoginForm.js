@@ -9,6 +9,8 @@ import { Web3Storage } from 'web3.storage'
 import { ETHERSCAN_APIKEY, NFT_CONTRACT, STORAGE_TOKEN, ABI_NFT_CONTRACT } from "./constants";
 import { NotebookContext } from "./data";
 
+var bigInt = require("big-integer");
+
 const Web3 = require('web3');
 var web3 = new Web3(window.ethereum);
 
@@ -58,6 +60,8 @@ export default function LoginForm() {
         var contractNFT = new web3.eth.Contract(ABI_NFT_CONTRACT, NFT_CONTRACT, call_params);
         console.log(notebook);
         contractNFT.methods.pullRootCID(notebook).send(function (err, res) {
+            console.log(err);
+            // console.log
             getLogsFromCID(res);
         });
     }
