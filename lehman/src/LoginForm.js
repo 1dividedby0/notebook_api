@@ -59,9 +59,8 @@ export default function LoginForm() {
         let call_params = { from: wallet_address, gasPrice: 20000000000, gas: 4000000 };
         var contractNFT = new web3.eth.Contract(ABI_NFT_CONTRACT, NFT_CONTRACT, call_params);
         console.log(notebook);
-        contractNFT.methods.pullRootCID(notebook).send(function (err, res) {
+        contractNFT.methods.pullRootCID(notebook).call(function (err, res) {
             console.log(err);
-            // console.log
             getLogsFromCID(res);
         });
     }
@@ -72,7 +71,7 @@ export default function LoginForm() {
         const response = await fetch(api_addr);
         const data = await response.json();
         console.log(data);
-        setNotebook(data["result"][0]["hash"]);
+        setNotebook(web3.utils.toBN(data["result"][0]["hash"]));
         event.preventDefault();
     }
 

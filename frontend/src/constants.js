@@ -4,7 +4,7 @@ export const SHARD_B_ADDRESS = '0x4058fcbC446D2aC1A6d3C0B9f2c1Bfb2Efb9072A'
 export const SHARD_C_ADDRESS = '0x5a104C9C8ccF5EC1698D112bD03ceB282A9A80A5'
 export const AUTH_MANAGER_CONTRACT = '0x6dA8F773197A35fA2E2E06EAd1159DAa204cbDc2'
 export const TOKEN_MANAGER_CONTRACT = '0x645bEca852e253229241b1d5CB51A9CE2681a44d'
-export const NFT_ADDRESS = '0x33C4986505A7D069Fec3EDF1d39364162490fc62'
+export const NFT_ADDRESS = '0xf5b71de3CDAd132b68120a5EAF1CA22B2c702eB3'
 export const ABI_AUTHENTICATE = [
     {
         "inputs": [
@@ -363,6 +363,31 @@ export const ABI_NFT_CONTRACT = [
         "type": "event"
     },
     {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "_from",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "_to",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "uint256",
+                "name": "_tokenId",
+                "type": "uint256"
+            }
+        ],
+        "name": "Transfer",
+        "type": "event"
+    },
+    {
         "inputs": [
             {
                 "internalType": "address",
@@ -378,6 +403,68 @@ export const ABI_NFT_CONTRACT = [
         "name": "approve",
         "outputs": [],
         "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_owner",
+                "type": "address"
+            }
+        ],
+        "name": "balanceOf",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_tokenId",
+                "type": "uint256"
+            }
+        ],
+        "name": "getApproved",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_owner",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "_operator",
+                "type": "address"
+            }
+        ],
+        "name": "isApprovedForAll",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "view",
         "type": "function"
     },
     {
@@ -409,11 +496,62 @@ export const ABI_NFT_CONTRACT = [
         "type": "function"
     },
     {
-        "inputs": [
+        "inputs": [],
+        "name": "name",
+        "outputs": [
             {
                 "internalType": "string",
-                "name": "_tokenId",
+                "name": "_name",
                 "type": "string"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_tokenId",
+                "type": "uint256"
+            }
+        ],
+        "name": "ownerOf",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "_owner",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_tokenId",
+                "type": "uint256"
+            }
+        ],
+        "name": "pullRootCID",
+        "outputs": [
+            {
+                "internalType": "string",
+                "name": "rootCID",
+                "type": "string"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_tokenId",
+                "type": "uint256"
             },
             {
                 "internalType": "string",
@@ -496,167 +634,6 @@ export const ABI_NFT_CONTRACT = [
         "type": "function"
     },
     {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "_from",
-                "type": "address"
-            },
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "_to",
-                "type": "address"
-            },
-            {
-                "indexed": true,
-                "internalType": "uint256",
-                "name": "_tokenId",
-                "type": "uint256"
-            }
-        ],
-        "name": "Transfer",
-        "type": "event"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "_from",
-                "type": "address"
-            },
-            {
-                "internalType": "address",
-                "name": "_to",
-                "type": "address"
-            },
-            {
-                "internalType": "uint256",
-                "name": "_tokenId",
-                "type": "uint256"
-            }
-        ],
-        "name": "transferFrom",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "_owner",
-                "type": "address"
-            }
-        ],
-        "name": "balanceOf",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "_tokenId",
-                "type": "uint256"
-            }
-        ],
-        "name": "getApproved",
-        "outputs": [
-            {
-                "internalType": "address",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "_owner",
-                "type": "address"
-            },
-            {
-                "internalType": "address",
-                "name": "_operator",
-                "type": "address"
-            }
-        ],
-        "name": "isApprovedForAll",
-        "outputs": [
-            {
-                "internalType": "bool",
-                "name": "",
-                "type": "bool"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "name",
-        "outputs": [
-            {
-                "internalType": "string",
-                "name": "_name",
-                "type": "string"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "_tokenId",
-                "type": "uint256"
-            }
-        ],
-        "name": "ownerOf",
-        "outputs": [
-            {
-                "internalType": "address",
-                "name": "_owner",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "string",
-                "name": "_tokenId",
-                "type": "string"
-            }
-        ],
-        "name": "pullRootCID",
-        "outputs": [
-            {
-                "internalType": "string",
-                "name": "rootCID",
-                "type": "string"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
         "inputs": [
             {
                 "internalType": "bytes4",
@@ -691,9 +668,9 @@ export const ABI_NFT_CONTRACT = [
     {
         "inputs": [
             {
-                "internalType": "string",
+                "internalType": "uint256",
                 "name": "",
-                "type": "string"
+                "type": "uint256"
             }
         ],
         "name": "tokenIDtoCID",
@@ -724,6 +701,29 @@ export const ABI_NFT_CONTRACT = [
             }
         ],
         "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_from",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "_to",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_tokenId",
+                "type": "uint256"
+            }
+        ],
+        "name": "transferFrom",
+        "outputs": [],
+        "stateMutability": "nonpayable",
         "type": "function"
     }
 ]
