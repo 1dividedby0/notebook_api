@@ -573,7 +573,7 @@ module.exports = function (webpackEnv) {
       // Generates an `index.html` file with the <script> injected.
       new webpack.ProvidePlugin({
         Buffer: ['buffer', 'Buffer'],
-        // process: 'process/browser'
+        process: 'process/browser.js'
       }),
       new HtmlWebpackPlugin(
         Object.assign(

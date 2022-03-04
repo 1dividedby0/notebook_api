@@ -12,7 +12,7 @@ import { NotebookContext } from "./data";
 const Web3 = require('web3');
 var web3 = new Web3(window.ethereum);
 
-const storage = new Web3Storage({ STORAGE_TOKEN });
+const storage = new Web3Storage({ token: STORAGE_TOKEN });
 
 export default function LoginForm() {
     const [notebook, setNotebook] = useContext(NotebookContext);
@@ -38,7 +38,11 @@ export default function LoginForm() {
     }
 
     async function getLogsFromCID(rootCID) {
-        const res = await client.get(rootCID)
+        console.log(rootCID)
+        const res = await storage.get(rootCID)
+        if (!res.ok) {
+            setLogs([]);
+        }
         const files = await res.files()
         for (const file of files) {
             console.log(`${file.cid} ${file.name} ${file.size}`);
@@ -52,7 +56,10 @@ export default function LoginForm() {
         const wallet_address = window.ethereum.selectedAddress;
         let call_params = { from: wallet_address, gasPrice: 20000000000, gas: 4000000 };
         var contractNFT = new web3.eth.Contract(ABI_NFT_CONTRACT, NFT_CONTRACT, call_params);
-        contractNFT.methods.pullRootCID(notebook).send().then(getLogsFromCID);
+        console.log(notebook);
+        contractNFT.methods.pullRootCID(notebook).send(function (err, res) {
+            getLogsFromCID(res);
+        });
     }
 
     async function handleGetNFT(event) {
@@ -61,7 +68,7 @@ export default function LoginForm() {
         const response = await fetch(api_addr);
         const data = await response.json();
         console.log(data);
-        setNotebook(data["hash"]);
+        setNotebook(data["result"][0]["hash"]);
         event.preventDefault();
     }
 
