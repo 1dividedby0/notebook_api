@@ -4,6 +4,7 @@ import {
     useContext
 } from "react";
 import { Button, FormControl } from "@material-ui/core";
+import { DataGrid } from '@material-ui/data-grid';
 // import { NotebookContext } from "./data";
 import { Web3Storage } from 'web3.storage'
 import { ETHERSCAN_APIKEY, NFT_CONTRACT, STORAGE_TOKEN, ABI_NFT_CONTRACT } from "./constants";
@@ -18,7 +19,7 @@ const storage = new Web3Storage({ token: STORAGE_TOKEN });
 
 export default function LoginForm() {
     const [notebook, setNotebook] = useContext(NotebookContext);
-    const [logs, setLogs] = useState();
+    const [logs, setLogs] = useState([]);
 
     async function upload(newLogs) {
         const wallet_address = window.ethereum.selectedAddress;
@@ -27,11 +28,16 @@ export default function LoginForm() {
         console.log(`Uploading ${logs.length + newLogs.length} logs`)
         for (var i = 0; i < logs.length + newLogs.length; i++) {
             var file_name = Math.random() * 10000000;
-            files.push(new File([logs.concat(newLogs)[i]], `${file_name}`));
+            files.push(new File([logs.concat(newLogs)[i].text], `${file_name}`));
         }
         const newCID = await storage.put(files);
 
-        setLogs(logs.concat(newLogs));
+        var newLogsRows = [];
+        for (let log of newLogs) {
+            newLogsRows.push({ "id": newCID, "text": log });
+        }
+
+        setLogs(logs.concat(newLogsRows));
         // update notebook contract cid
         console.log('Content added with CID:', newCID);
         let call_params = { from: wallet_address, gasPrice: 20000000000, gas: 4000000 };
@@ -44,13 +50,16 @@ export default function LoginForm() {
         const res = await storage.get(rootCID)
         if (!res.ok) {
             setLogs([]);
+            return;
         }
         const files = await res.files()
+        var logs_rows = [];
         for (const file of files) {
             console.log(`${file.cid} ${file.name} ${file.size}`);
             console.log(file);
+            logs_rows.push({ "id": file.cid, "text": file.name });
         }
-        setLogs(files);
+        setLogs(logs_rows);
     }
 
     async function getLogs() {
@@ -89,16 +98,33 @@ export default function LoginForm() {
 
     useEffect(() => {
         if (notebook != null) {
-            const retrievedLogs = getLogs();
-            setLogs(retrievedLogs);
+            getLogs();
         }
     }, [notebook]);
 
+    const columns = [
+        {
+            field: "id", headerName: "ID", width: 1000,
+            field: "text", headerName: "Transaction", width: 1000
+        }
+    ]
+
     return (
-        <FormControl>
-            <Button variant="outlined" onClick={handleGetNFT}>Sign in with Notebook</Button>
-            <Button variant="outlined" onClick={handleRequestLoan}>Request Loan</Button>
-            <Button variant="outlined" onClick={handleDefaultLoan}>Default on Loan</Button>
-        </FormControl>
+        <div>
+            <FormControl>
+                <Button variant="outlined" onClick={handleGetNFT}>Sign in with Notebook</Button>
+                <Button variant="outlined" onClick={handleRequestLoan}>Request Loan</Button>
+                <Button variant="outlined" onClick={handleDefaultLoan}>Default on Loan</Button>
+            </FormControl>
+            <div style={{ height: 400, width: "100%" }}>
+                <DataGrid
+                    rows={logs}
+                    columns={columns}
+                    pageSize={5}
+                    checkboxSelection
+                    disableSelectionOnClick
+                />
+            </div>
+        </div>
     );
 }
